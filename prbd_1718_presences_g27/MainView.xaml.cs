@@ -25,6 +25,7 @@ namespace prbd_1718_presences_g27
         public ICommand CancelChanges { get; set; }
         public ICommand Logout { get; set; }
         public ICommand AddStudent { get; set; }
+        /*jusqu'à là tout va bien*/
 
         public MainView()
         {

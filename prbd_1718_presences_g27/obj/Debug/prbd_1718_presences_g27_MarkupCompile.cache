@@ -4,16 +4,16 @@
 exe
 C#
 .cs
-C:\myFile\AIIAFairap\VDJ\TodoVideo\FormationCsharp\Doc\gestionPrésence\prbd_1718_presences_g27\obj\Debug\
+C:\myFile\AIIAFairap\VDJ\TodoVideo\FormationCsharp\Doc\presence\prbd_1718_presences_g27\obj\Debug\
 prbd_1718_presences_g27
 none
 false
 DEBUG;TRACE
-C:\myFile\AIIAFairap\VDJ\TodoVideo\FormationCsharp\Doc\gestionPrésence\prbd_1718_presences_g27\App.xaml
+C:\myFile\AIIAFairap\VDJ\TodoVideo\FormationCsharp\Doc\presence\prbd_1718_presences_g27\App.xaml
 6579471220
 31816798348
 27576560679
-22-1009797985
+221018184678
 PresenceView.xaml;PlanningView.xaml;CoursesView.xaml;LoginView.xaml;MainView.xaml;CourseDetailView.xaml;
 
 True
