@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="prbd_1718_presences_g27ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="certificate">
+      <EntityTypeMapping TypeName="prbd_1718_presences_g27.Model.Certificate">
+        <MappingFragment StoreEntitySet="certificate">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Startdate" ColumnName="startdate" />
+          <ScalarProperty Name="Finishdate" ColumnName="finishdate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="course">
+      <EntityTypeMapping TypeName="prbd_1718_presences_g27.Model.Course">
+        <MappingFragment StoreEntitySet="course">
+          <ScalarProperty Name="Code" ColumnName="code" />
+          <ScalarProperty Name="Title" ColumnName="title" />
+          <ScalarProperty Name="Starttime" ColumnName="starttime" />
+          <ScalarProperty Name="Endtime" ColumnName="endtime" />
+          <ScalarProperty Name="Startdate" ColumnName="startdate" />
+          <ScalarProperty Name="Finishdate" ColumnName="finishdate" />
+          <ScalarProperty Name="Dayofweek" ColumnName="dayofweek" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="courseoccurrence">
+      <EntityTypeMapping TypeName="prbd_1718_presences_g27.Model.Courseoccurrence">
+        <MappingFragment StoreEntitySet="courseoccurrence">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="presence">
+      <EntityTypeMapping TypeName="prbd_1718_presences_g27.Model.Presence">
+        <MappingFragment StoreEntitySet="presence">
+          <ScalarProperty Name="Student" ColumnName="student" />
+          <ScalarProperty Name="Courseoccurence" ColumnName="courseoccurence" />
+          <ScalarProperty Name="Present" ColumnName="present" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="student">
+      <EntityTypeMapping TypeName="prbd_1718_presences_g27.Model.Student">
+        <MappingFragment StoreEntitySet="student">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Lastname" ColumnName="lastname" />
+          <ScalarProperty Name="Firstname" ColumnName="firstname" />
+          <ScalarProperty Name="Sex" ColumnName="sex" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user">
+      <EntityTypeMapping TypeName="prbd_1718_presences_g27.Model.User">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Pseudo" ColumnName="pseudo" />
+          <ScalarProperty Name="Password" ColumnName="password" />
+          <ScalarProperty Name="Fullname" ColumnName="fullname" />
+          <ScalarProperty Name="Role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="certificate_certificate_ibfk_1" TypeName="prbd_1718_presences_g27.Model.certificate_certificate_ibfk_1" StoreEntitySet="certificate">
+      <EndProperty Name="student">
+        <ScalarProperty Name="Id" ColumnName="student" />
+      </EndProperty>
+      <EndProperty Name="certificate">
+        <ScalarProperty Name="Id" ColumnName="id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="course_course_ibfk_1" TypeName="prbd_1718_presences_g27.Model.course_course_ibfk_1" StoreEntitySet="course">
+      <EndProperty Name="user">
+        <ScalarProperty Name="Id" ColumnName="teacher" />
+      </EndProperty>
+      <EndProperty Name="course">
+        <ScalarProperty Name="Code" ColumnName="code" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="courseoccurrence_courseoccurrence_ibfk_1" TypeName="prbd_1718_presences_g27.Model.courseoccurrence_courseoccurrence_ibfk_1" StoreEntitySet="courseoccurrence">
+      <EndProperty Name="course">
+        <ScalarProperty Name="Code" ColumnName="course" />
+      </EndProperty>
+      <EndProperty Name="courseoccurrence">
+        <ScalarProperty Name="Id" ColumnName="id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="studentcourses" TypeName="prbd_1718_presences_g27.Model.studentcourses" StoreEntitySet="studentcourses">
+      <EndProperty Name="student">
+        <ScalarProperty Name="Id" ColumnName="student" />
+      </EndProperty>
+      <EndProperty Name="course">
+        <ScalarProperty Name="Code" ColumnName="course" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

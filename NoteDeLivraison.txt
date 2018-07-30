@@ -1,0 +1,13 @@
+J'ai voulu avancé le plus loin possible dans les fonctionnalités, je n'ai donc pas passé beaucoup de temps dans la structure et le nettoyage du code.
+
+
+Je me suis surtout focalisé sur les petites fonctonnalités, jusqu'à la gestion des présences. Je n'ai pas encore pris en comptes,tous les changements en cascades.
+Le logout n'est pas encore fait non plus.
+
+Je suis conscient que je n'ai pas tout le temps respecté toutes les contraintes fonctionnelles, par manque de temps et j'en suis navré.
+
+Je n'ai pas eu non plus de temps de créer un fichier sql pour tester mon projet, j'avais créé directement dans la base de donnée à partir de VS, en modifiant le table presence, où j'avais mis les étudiants :
+1,2,3,4,5 pour l'occurence 120, le colonne présent à 1
+
+Mais à mon jugement, il ne me doit pas rester beaucoup à faire, puisque j'ai fait les grandes lignes, il suffisait de répéter les mêmes actions pour compléter le projet.
+

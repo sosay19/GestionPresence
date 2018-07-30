@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="prbd_1718_presences_g27.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="certificate">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="student" Type="int" Nullable="false" />
+    <Property Name="startdate" Type="date" Nullable="false" />
+    <Property Name="finishdate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="int" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="starttime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="endtime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="startdate" Type="date" Nullable="false" />
+    <Property Name="finishdate" Type="date" Nullable="false" />
+    <Property Name="teacher" Type="int" Nullable="false" />
+    <Property Name="dayofweek" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="courseoccurrence">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="course" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="presence">
+    <Key>
+      <PropertyRef Name="student" />
+      <PropertyRef Name="courseoccurence" />
+    </Key>
+    <Property Name="student" Type="int" Nullable="false" />
+    <Property Name="courseoccurence" Type="int" Nullable="false" />
+    <Property Name="present" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="lastname" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="firstname" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="sex" Type="nvarchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="studentcourses">
+    <Key>
+      <PropertyRef Name="student" />
+      <PropertyRef Name="course" />
+    </Key>
+    <Property Name="student" Type="int" Nullable="false" />
+    <Property Name="course" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pseudo" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="fullname" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <Association Name="certificate$certificate_ibfk_1">
+    <End Role="student" Type="Self.student" Multiplicity="1" />
+    <End Role="certificate" Type="Self.certificate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="certificate">
+        <PropertyRef Name="student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="course$course_ibfk_1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="course" Type="Self.course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="course">
+        <PropertyRef Name="teacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="courseoccurrence$courseoccurrence_ibfk_1">
+    <End Role="course" Type="Self.course" Multiplicity="1" />
+    <End Role="courseoccurrence" Type="Self.courseoccurrence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="code" />
+      </Principal>
+      <Dependent Role="courseoccurrence">
+        <PropertyRef Name="course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="presence$presence_ibfk_1">
+    <End Role="student" Type="Self.student" Multiplicity="1" />
+    <End Role="presence" Type="Self.presence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="presence">
+        <PropertyRef Name="student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="presence$presence_ibfk_2">
+    <End Role="courseoccurrence" Type="Self.courseoccurrence" Multiplicity="1" />
+    <End Role="presence" Type="Self.presence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="courseoccurrence">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="presence">
+        <PropertyRef Name="courseoccurence" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="studentcourses$studentcourses_ibfk_1">
+    <End Role="student" Type="Self.student" Multiplicity="1" />
+    <End Role="studentcourses" Type="Self.studentcourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="studentcourses">
+        <PropertyRef Name="student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="studentcourses$studentcourses_ibfk_2">
+    <End Role="course" Type="Self.course" Multiplicity="1" />
+    <End Role="studentcourses" Type="Self.studentcourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="code" />
+      </Principal>
+      <Dependent Role="studentcourses">
+        <PropertyRef Name="course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="prbd_1718_presences_g27ModelStoreContainer">
+    <EntitySet Name="certificate" EntityType="Self.certificate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="course" EntityType="Self.course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="courseoccurrence" EntityType="Self.courseoccurrence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="presence" EntityType="Self.presence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="studentcourses" EntityType="Self.studentcourses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="certificate$certificate_ibfk_1" Association="Self.certificate$certificate_ibfk_1">
+      <End Role="student" EntitySet="student" />
+      <End Role="certificate" EntitySet="certificate" />
+    </AssociationSet>
+    <AssociationSet Name="course$course_ibfk_1" Association="Self.course$course_ibfk_1">
+      <End Role="user" EntitySet="user" />
+      <End Role="course" EntitySet="course" />
+    </AssociationSet>
+    <AssociationSet Name="courseoccurrence$courseoccurrence_ibfk_1" Association="Self.courseoccurrence$courseoccurrence_ibfk_1">
+      <End Role="course" EntitySet="course" />
+      <End Role="courseoccurrence" EntitySet="courseoccurrence" />
+    </AssociationSet>
+    <AssociationSet Name="presence$presence_ibfk_1" Association="Self.presence$presence_ibfk_1">
+      <End Role="student" EntitySet="student" />
+      <End Role="presence" EntitySet="presence" />
+    </AssociationSet>
+    <AssociationSet Name="presence$presence_ibfk_2" Association="Self.presence$presence_ibfk_2">
+      <End Role="courseoccurrence" EntitySet="courseoccurrence" />
+      <End Role="presence" EntitySet="presence" />
+    </AssociationSet>
+    <AssociationSet Name="studentcourses$studentcourses_ibfk_1" Association="Self.studentcourses$studentcourses_ibfk_1">
+      <End Role="student" EntitySet="student" />
+      <End Role="studentcourses" EntitySet="studentcourses" />
+    </AssociationSet>
+    <AssociationSet Name="studentcourses$studentcourses_ibfk_2" Association="Self.studentcourses$studentcourses_ibfk_2">
+      <End Role="course" EntitySet="course" />
+      <End Role="studentcourses" EntitySet="studentcourses" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

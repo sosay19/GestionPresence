@@ -1,0 +1,193 @@
+﻿<f:UserControlBase x:Class="prbd_1718_presences_g27.CourseDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:f="clr-namespace:PRBD_Framework;assembly=PRBD_Framework"
+             xmlns:local="clr-namespace:prbd_1718_presences_g27"
+             mc:Ignorable="d" 
+             FontSize="14" >
+    <UserControl.Resources>
+        <local:ValueToBrushConverter x:Key="ValueToBrushConverter"/>
+        <Style x:Key="CellStyle" TargetType="DataGridCell">
+            <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource ValueToBrushConverter}}" />
+        </Style>
+    </UserControl.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Code :" Grid.Row="0"  Grid.Column="0"  />
+        <f:ValidatedField  Grid.Row="0"  Margin="57,4,0,3.6"  VerticalAlignment="Center">
+            <TextBox x:Name="txtCode" Grid.Row="0"  Margin="57,4,0,3.6" VerticalAlignment="Center" Text="{Binding Code}"   IsReadOnly="{Binding Path=IsExisting}"  />
+        </f:ValidatedField>
+        <Label Content="Title :" Grid.Column="0" Grid.Row="1" />
+        <f:ValidatedField Grid.Row="1" Margin="57,0.4,0,0.2" VerticalAlignment="Center">
+            <TextBox x:Name="txtTitle"  Grid.Row="1" Margin="57,0.4,0,0.2"  Text="{Binding Title}" VerticalAlignment="Center" />
+        </f:ValidatedField>
+        <Label Content="Teacher :" Grid.Column="0" Grid.Row="2" />
+        <f:ValidatedField HorizontalAlignment="Left" 
+                  Grid.Row="2"
+                 VerticalAlignment="Top"
+                Width="auto"   
+                  RenderTransformOrigin="0.293,-4.867" 
+                  Margin="62,4.8,0,0">
+            <ComboBox HorizontalAlignment="Left" 
+                  Grid.Row="2"
+                 VerticalAlignment="Top"
+                Width="auto"   
+                  RenderTransformOrigin="0.293,-4.867" 
+                  Margin="62,4.8,0,0"
+                  x:Name="cmb"                      
+                    ItemsSource="{Binding ProfessorEntries, Mode=OneWay}"
+            DisplayMemberPath="Name"
+            SelectedValuePath="Name"
+            SelectedValue="{Binding FilterUsers, UpdateSourceTrigger=PropertyChanged}"
+                  
+                   />
+        </f:ValidatedField>
+        <Label Content="Day of  week:" Grid.Column="0" 
+               Grid.Row="3"  />
+        <ComboBox HorizontalAlignment="Left" 
+                  Grid.Row="3"
+                VerticalAlignment="Top"
+                Width="auto" 
+                  RenderTransformOrigin="2.914,0.342" 
+            Margin="102,0,0,25.4" 
+                  ItemsSource="{Binding DayEntries, Mode=OneWay}"  
+                  DisplayMemberPath="Name"
+            SelectedValuePath="Name"
+            SelectedValue="{Binding FilterDays, UpdateSourceTrigger=PropertyChanged}"
+
+                           
+              x:Name="cmb1"       
+                  
+             />
+        <Label Content="Dates :" Grid.Column="0" Grid.Row="4" />
+        <Label Content="Début :" Grid.Row="4"  Margin="57,1,318,0" Height="auto" VerticalAlignment="Top" />
+        <f:ValidatedField HorizontalAlignment="Left" Grid.Row="4" Margin="57,0.6,0,0" Width="auto" Height="auto" VerticalAlignment="Top">
+            <DatePicker  HorizontalAlignment="Left" Grid.Row="4" Grid.Column="1" Margin="57.2,0.6,0,15"   x:Name="datePicker1"   
+             SelectedDate="{Binding DatesBegin, UpdateSourceTrigger=PropertyChanged}" />
+        </f:ValidatedField>
+        <Label Content="Fin :" Grid.Row="3" Margin="283,49,204,15" Grid.RowSpan="2" />
+        <f:ValidatedField HorizontalAlignment="Left" Grid.Row="3"  Margin="296,49.2,0,0" Grid.RowSpan="2" Width="auto"  >
+            <DatePicker  HorizontalAlignment="Left" Margin="57.2,0.6,0,15"   x:Name="datePicker2"   
+               SelectedDate="{Binding DatesEnd, UpdateSourceTrigger=PropertyChanged}" />
+        </f:ValidatedField>
+        <Label Content="Heures :" Grid.Row="5"  Grid.Column="0" Margin="0,0,466,24.6"  />
+        <Label Content="Début :" Grid.Row="5" Margin="62,0,0,24.6" HorizontalAlignment="Left" Width="auto" />
+        <f:ValidatedField Grid.Row="5" Margin="118,0,0,24.6"  HorizontalAlignment="Left" Width="auto"  >
+            <TextBox x:Name="StartTime" Margin="118,0,0,24.6"  HorizontalAlignment="Left" Width="auto"  Grid.Row="5"
+                 Text="{Binding Starttime, UpdateSourceTrigger=PropertyChanged}" 
+                 />
+        </f:ValidatedField>
+        <Label Content="Fin :" Grid.Row="5" Margin="0,0,238,0" Width="auto" Height="auto" VerticalAlignment="Top" RenderTransformOrigin="0.517,-0.285" HorizontalAlignment="Right" />
+        <f:ValidatedField  Grid.Row="5" Margin="291,0,0,24.4" Width="auto" Height="auto" VerticalAlignment="Bottom"  >
+            <TextBox x:Name="EndTime" Grid.Row="5" Margin="291,0,0,24.6" HorizontalAlignment="Left" Width="auto" Height="auto" VerticalAlignment="Bottom"  
+                 Text="{Binding Endtime, UpdateSourceTrigger=PropertyChanged}"
+                 />
+        </f:ValidatedField>
+        <TabControl Grid.Row="6">
+            <TabItem Header="Inscriptions">
+
+                <Grid Margin="50,0,50.4,20.2" Height="auto" VerticalAlignment="Bottom">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Etudiants non-inscrits à ce cours :" Margin="-52,-46,43.6,77.2" Grid.ColumnSpan="2"  />
+                    <DataGrid x:Name="dgUnregisteredStudents" ItemsSource="{Binding UnregisteredStudents}" AutoGenerateColumns="False" Margin="-52,0,43.2,0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="auto" 
+                              
+                              >
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                            <DataGridTextColumn Header="Nom" Binding="{Binding Firstname}" />
+                            <DataGridTextColumn Header="Prénom" Binding="{Binding Lastname}" />
+                            <DataGridTextColumn Header="Sexe" Binding="{Binding Sex}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label Content="Etudiants inscrits à ce cours :" Margin="23.4,-41,-50.6,72.2" Grid.ColumnSpan="5" Grid.Column="2"  />
+                    <DataGrid x:Name="dgRegisteredStudents" ItemsSource="{Binding RegisteredStudents}" AutoGenerateColumns="False" Margin="22.8,0,-38.8,0" Grid.Column="2" Grid.ColumnSpan="5" HorizontalAlignment="Left" Width="auto">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                            <DataGridTextColumn Header="Nom" Binding="{Binding Firstname}" />
+                            <DataGridTextColumn Header="Prénom" Binding="{Binding Lastname}" />
+                            <DataGridTextColumn Header="Sexe" Binding="{Binding Sex}" />
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="btnNew1" Content="&gt;&gt;" Command="{Binding RegisterAll}" 
+                HorizontalAlignment="Left"  Margin="152.4,3,0,0" Width="auto" Height="auto" Padding="5,1" Grid.Column="1" RenderTransformOrigin="0.993,1.679" VerticalAlignment="Top"/>
+                    <Button x:Name="btnNew2" Content="&gt;" Command="{Binding Register}" 
+                HorizontalAlignment="Right"  Margin="0,31,22.6,0" Width="auto" Height="auto" Padding="5,1" Grid.Column="1" RenderTransformOrigin="0.993,1.679" VerticalAlignment="Top"/>
+                    <Button x:Name="btnNew3" Content="&lt;" Command="{Binding Unregister}" 
+                HorizontalAlignment="Right"  Margin="0,62,22.6,0" Width="auto" Height="auto" Padding="5,1" Grid.Column="1" RenderTransformOrigin="0.993,1.679" VerticalAlignment="Top"/>
+                    <Button x:Name="btnNew4" Content="&lt;&lt;" Command="{Binding UnregisterAll}" 
+                HorizontalAlignment="Right"  Margin="0,89,12.6,0" Width="auto" Height="auto" Padding="5,1" Grid.Column="1" RenderTransformOrigin="0.993,1.679" VerticalAlignment="Top"/>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Historique des présences">
+             <DataGrid 
+                   x:Name="dataGrid" CellStyle="{StaticResource CellStyle}" Height="auto"
+                    AutoGenerateColumns="True" ItemsSource="{Binding Location}" IsReadOnly="True" HorizontalAlignment="Left" 
+                    CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False"              
+             
+                    
+                    >
+          
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="ContentTemplate" >
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <Button x:Name="btnPlanning" Content="{Binding}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" 
+                                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto"
+                                                 Command="{Binding DataContext.DisplayPresence  
+                                , RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                CommandParameter="{Binding}" 
+                                                >
+                                            <Button.LayoutTransform>
+                                                <RotateTransform Angle="270" />
+                                            </Button.LayoutTransform>
+                                        </Button>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    
+
+                </DataGrid>
+            </TabItem>
+
+        </TabControl>
+        <WrapPanel Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="auto">
+            <Button x:Name="btnDelete" Content="Delete" Command="{Binding Delete}" Width="auto" Margin="10,0,0,0" Padding="5,1"/>
+        </WrapPanel>
+    </Grid>
+
+
+</f:UserControlBase>
