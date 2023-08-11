@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\SONA\source\repos\prbd_1718_presences_g27\prbd_1718_presences_g27\Model.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\AIF\dev\Desktop\prbd_1718_presences_g27\Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
